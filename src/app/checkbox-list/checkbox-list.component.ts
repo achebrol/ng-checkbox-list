@@ -45,9 +45,7 @@ export class CheckboxListComponent implements ControlValueAccessor, Validator {
     }
 
     // validates the form, returns null when valid else the validation object
-    // in this case we're checking if the json parsing has passed or failed from the onChange method
     public validate(c: FormControl) {
-      //console.log(c.validator.prototype)
       if(this.data.length==0 && this.required){
         return {required:{valid:false}};
       }
