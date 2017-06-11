@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-4" *ngFor="let item of source;let i = index">
+    <div class="checkbox abc-checkbox abc-checkbox-danger">
+    <input type="checkbox" [value]="item[valueField]" 
+    [attr.id]="identifier+'_'+ i"
+    (change)="onChange($event)"
+    (blur)="onTouch()"
+        [checked]="isChecked(item)"
+    >
+    <label [attr.for]="identifier+'_'+ i">
+        {{item[labelField]}}
+    </label>
+  </div>
+
+<!--<label >
+        <input type="checkbox"  [value]="item[valueField]"
+        (change)="onChange($event)"
+        [checked]="isChecked(item)"
+        />
+        {{item[labelField]}}
+        </label>-->
+  </div>
+  </div>

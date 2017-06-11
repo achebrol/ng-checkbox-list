@@ -1,0 +1,29 @@
+<h1>Reactive Forms Sample
+</h1>
+<form [formGroup]="reactiveForm">
+  
+  <app-checkbox-list 
+[source]="data$ | async"
+labelField="description"
+valueField="id"
+formControlName="selected"
+minLength=1
+maxLength=2
+>
+</app-checkbox-list>
+<span *ngIf="reactiveForm.get('selected').errors?.required">field is required</span>
+        <span *ngIf="reactiveForm.get('selected').errors?.minlength">At least 1 is required</span>
+      <span *ngIf="reactiveForm.get('selected').errors?.maxlength">Max 2 allowed</span>
+  
+      </form>
+
+
+<pre>
+ Touched: {{reactiveForm.get('selected').touched}}
+</pre>
+<pre>
+Form Value:
+{{reactiveForm.value | json}}
+
+</pre>
+
