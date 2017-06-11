@@ -2,6 +2,31 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
 
+## Use
+
+First just include **awesome-bootstrap-checkbox.css** somewhere in your HTML, or add the equivalent files to your [Sass](#using-sass) / [Less](#using-less) configuration.
+Next, everything is based on code convention. Here is checkbox markup from Bootstrap site:
+
+````html
+<form [formGroup]="reactiveForm">
+  ...
+  <ng-checkbox-list 
+        [source]="data$ | async"
+        labelField="description"
+        valueField="id"
+        formControlName="selected"
+        required
+        minLength=1
+        maxLength=2
+        colClass="col-sm-6"
+        tabindex="2"
+    >
+    </ng-checkbox-list>
+  ...
+</form>
+````
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
