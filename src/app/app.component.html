@@ -1,22 +1,30 @@
 <h1>Reactive Forms Sample
 </h1>
 <form [formGroup]="reactiveForm">
-  
-  <app-checkbox-list 
+  <div class="row form-group">
+    <input type="text" tabindex="1">
+    </div>
+
+  <ng-checkbox-list 
 [source]="data$ | async"
 labelField="description"
 valueField="id"
 formControlName="selected"
 minLength=1
 maxLength=2
+colClass="col-sm-6"
+tabindex="2"
 >
-</app-checkbox-list>
+</ng-checkbox-list>
 <span *ngIf="reactiveForm.get('selected').errors?.required">field is required</span>
         <span *ngIf="reactiveForm.get('selected').errors?.minlength">At least 1 is required</span>
       <span *ngIf="reactiveForm.get('selected').errors?.maxlength">Max 2 allowed</span>
   
       </form>
 
+<div class="row form-group">
+    <input type="text" tabindex="3">
+    </div>
 
 <pre>
  Touched: {{reactiveForm.get('selected').touched}}

@@ -1,9 +1,9 @@
 
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ElementRef, Renderer, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Validator } from '@angular/forms';
 let counter=0;
 @Component({
-    selector: 'app-checkbox-list',
+    selector: 'ng-checkbox-list',
     templateUrl: './checkbox-list.component.html',
     styleUrls: ['./checkbox-list.component.css'],
     providers: [
@@ -18,14 +18,25 @@ let counter=0;
       multi: true,
     }]        
 })
-export class CheckboxListComponent implements ControlValueAccessor, Validator {
+export class CheckboxListComponent implements ControlValueAccessor, Validator, OnInit {
     @Input()source:Array<any>;
     @Input() valueField:string;
     @Input() labelField:string;
     @Input() required:false;
     @Input() minLength=0;
     @Input() maxLength=0;
+    @Input() colClass='col-sm-4';
+    @Input('tabindex') _tabindex=0;
     public identifier = `checkbox-${counter++}`;
+
+    constructor(private el:ElementRef,private renderer: Renderer){
+      
+    }
+
+    ngOnInit():void{
+      //to remove the blue border around the control on tab
+      this.renderer.setElementAttribute(this.el.nativeElement,"tabindex",null);
+    }
     
     private data: Array<any>;
 
