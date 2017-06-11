@@ -4,8 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Use
 
-First just include **awesome-bootstrap-checkbox.css** somewhere in your HTML, or add the equivalent files to your [Sass](#using-sass) / [Less](#using-less) configuration.
-Next, everything is based on code convention. Here is checkbox markup from Bootstrap site:
 
 ````html
 <form [formGroup]="reactiveForm">
