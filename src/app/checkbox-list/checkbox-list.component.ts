@@ -2,6 +2,34 @@
 import { Component, Input, forwardRef, ElementRef, Renderer, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Validator } from '@angular/forms';
 let counter=0;
+export class CheckBoxListValidators {
+static required(): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+      if ((<Array<any>>c.value).length === 0) {
+        return { 'required': true };
+      }
+      return null;
+    };
+  }
+static minLength(count: number): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+const selectedOptions = <Array<any>>c.value;
+      if (selectedOptions.length == count && count > 0) {
+        return { 'minlength': true };
+      }
+      return null;
+    };
+  }
+static maxLength(count: number): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+      const selectedOptions = (<Array<any>>c.value;
+      if (selectedOptions.length > count && count > 0) {
+        return { 'maxlength': true };
+      }
+      return null;
+    };
+  }
+}
 @Component({
     selector: 'ng-checkbox-list',
     templateUrl: './checkbox-list.component.html',
@@ -16,7 +44,7 @@ let counter=0;
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => CheckboxListComponent),
       multi: true,
-    }]        
+    }]
 })
 export class CheckboxListComponent implements ControlValueAccessor, Validator, OnInit {
     @Input()source:Array<any>;
@@ -30,14 +58,14 @@ export class CheckboxListComponent implements ControlValueAccessor, Validator, O
     public identifier = `checkbox-${counter++}`;
 
     constructor(private el:ElementRef,private renderer: Renderer){
-      
+
     }
 
     ngOnInit():void{
       //to remove the blue border around the control on tab
       this.renderer.setElementAttribute(this.el.nativeElement,"tabindex",null);
     }
-    
+
     private data: Array<any>;
 
     // this is the initial value set to the component
@@ -66,13 +94,13 @@ export class CheckboxListComponent implements ControlValueAccessor, Validator, O
       if(this.data.length>this.maxLength && this.maxLength>0){
         return {maxlength:{valid:false}};
       }
-      
+
       return null;
-        
+
     }
 
     // not used, used for touch input
-    public registerOnTouched(fn: any) { 
+    public registerOnTouched(fn: any) {
       this.propagateTouch = fn;
     }
     private onTouch(){
@@ -80,14 +108,14 @@ export class CheckboxListComponent implements ControlValueAccessor, Validator, O
     }
     // change events from the textarea
     private onChange(event) {
-      
+
         // get value from text area
         let newValue:any = event.target.value;
         let checked = event.target.checked;
         let item:any = this.source.find(d=>d[this.valueField]==newValue);
         let existing = this.data.find(d=>d[this.valueField]==newValue);
-        
-        
+
+
         if(existing){
           let idx = this.data.findIndex(d=>d[this.valueField]==newValue);
           this.data.splice(idx,1);
