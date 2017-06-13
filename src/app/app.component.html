@@ -1,8 +1,9 @@
 <h1>Reactive Forms Sample
 </h1>
 <form [formGroup]="reactiveForm">
+  <div class="container">
   <div class="row form-group">
-    <input type="text" tabindex="1">
+    <input type="text" tabindex="1" placeholder="Textbox 1">
     </div>
 
   <ng-checkbox-list 
@@ -10,8 +11,6 @@
 labelField="description"
 valueField="id"
 formControlName="selected"
-minLength=1
-maxLength=2
 colClass="col-sm-6"
 tabindex="2"
 >
@@ -20,12 +19,13 @@ tabindex="2"
         <span *ngIf="reactiveForm.get('selected').errors?.minlength">At least 1 is required</span>
       <span *ngIf="reactiveForm.get('selected').errors?.maxlength">Max 2 allowed</span>
   
-      </form>
+      
 
 <div class="row form-group">
-    <input type="text" tabindex="3">
+    <input type="text" tabindex="3" placeholder="Textbox 2">
     </div>
-
+</div>
+</form>
 <pre>
  Touched: {{reactiveForm.get('selected').touched}}
 </pre>

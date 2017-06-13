@@ -1,6 +1,35 @@
 
 import { Component, Input, forwardRef, ElementRef, Renderer, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Validator } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Validator, ValidatorFn, AbstractControl } from '@angular/forms';
+export class CheckBoxListValidators {
+  static required(): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+       const selectedOptions = <Array<any>>c.value;
+      if (selectedOptions.length === 0) {
+        return { 'required': true };
+      }
+      return null;
+    };
+  }
+  static minLength(count: number): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+      const selectedOptions = <Array<any>>c.value;
+      if (selectedOptions.length < count && count > 0) {
+        return { 'minlength': true };
+      }
+      return null;
+    };
+  }
+  static maxLength(count: number): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+      const selectedOptions = <Array<any>>c.value;
+      if (selectedOptions.length > count && count > 0) {
+        return { 'maxlength': true };
+      }
+      return null;
+    };
+  }
+}
 let counter=0;
 @Component({
     selector: 'ng-checkbox-list',
@@ -11,20 +40,12 @@ let counter=0;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxListComponent),
       multi: true,
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => CheckboxListComponent),
-      multi: true,
     }]        
 })
-export class CheckboxListComponent implements ControlValueAccessor, Validator, OnInit {
+export class CheckboxListComponent implements ControlValueAccessor, OnInit {
     @Input()source:Array<any>;
     @Input() valueField:string;
     @Input() labelField:string;
-    @Input() required:false;
-    @Input() minLength=0;
-    @Input() maxLength=0;
     @Input() colClass='col-sm-4';
     @Input('tabindex') _tabindex=0;
     public identifier = `checkbox-${counter++}`;
@@ -53,22 +74,6 @@ export class CheckboxListComponent implements ControlValueAccessor, Validator, O
     // this is how we emit the changes back to the form
     public registerOnChange(fn: any) {
         this.propagateChange = fn;
-    }
-
-    // validates the form, returns null when valid else the validation object
-    public validate(c: FormControl) {
-      if(this.data.length==0 && this.required){
-        return {required:{valid:false}};
-      }
-      if(this.data.length==0 && this.minLength>0){
-        return {minlength:{valid:false}};
-      }
-      if(this.data.length>this.maxLength && this.maxLength>0){
-        return {maxlength:{valid:false}};
-      }
-      
-      return null;
-        
     }
 
     // not used, used for touch input

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from "rxjs/Rx";
+import { CheckBoxListValidators } from "./checkbox-list/checkbox-list.component";
 export interface ILookUp
 {
   id:number;
@@ -22,7 +23,7 @@ export class AppComponent {
     
     
     this.reactiveForm = this.fb.group({
-      selected: [this.selected]
+      selected: [this.selected,[CheckBoxListValidators.required(),CheckBoxListValidators.minLength(1)]]
     })
   }
 }
