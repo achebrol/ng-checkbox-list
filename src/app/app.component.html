@@ -3,35 +3,27 @@
 <form [formGroup]="reactiveForm">
   <div class="row form-group">
     <input type="text" tabindex="1">
-    </div>
+  </div>
 
-  <ng-checkbox-list 
-[source]="data$ | async"
-labelField="description"
-valueField="id"
-formControlName="selected"
-minLength=1
-maxLength=2
-colClass="col-sm-6"
-tabindex="2"
->
-</ng-checkbox-list>
-<span *ngIf="reactiveForm.get('selected').errors?.required">field is required</span>
-        <span *ngIf="reactiveForm.get('selected').errors?.minlength">At least 1 is required</span>
-      <span *ngIf="reactiveForm.get('selected').errors?.maxlength">Max 2 allowed</span>
-  
-      </form>
+  <ng-checkbox-list [source]="data$ | async" labelField="description" valueField="id" formControlName="checkboxList"
+    [returnValuesOnly]="true"
+    [minLength]=1 [maxLength]=2 colClass="col-sm-6" [tabindex]="2">
+  </ng-checkbox-list>
+  <span *ngIf="reactiveForm.get('checkboxList').errors?.required">field is required</span>
+  <span *ngIf="reactiveForm.get('checkboxList').errors?.minlength">At least 1 is required</span>
+  <span *ngIf="reactiveForm.get('checkboxList').errors?.maxlength">Max 2 allowed</span>
+
+</form>
 
 <div class="row form-group">
-    <input type="text" tabindex="3">
-    </div>
+  <input type="text" tabindex="3">
+</div>
 
 <pre>
- Touched: {{reactiveForm.get('selected').touched}}
+ Touched: {{reactiveForm.get('checkboxList').touched}}
 </pre>
 <pre>
 Form Value:
 {{reactiveForm.value | json}}
 
 </pre>
-
