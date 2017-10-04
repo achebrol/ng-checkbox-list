@@ -21,7 +21,7 @@ export class AppComponent {
     , { id: 4, description: 'Fourth' }, { id: 5, description: 'Fifth' }]);
   constructor(private fb: FormBuilder) {
     this.reactiveForm = this.fb.group({
-      checkboxList: [null, [CheckBoxListValidators.required,
+      checkboxList: [[], [CheckBoxListValidators.required,
       CheckBoxListValidators.minLength(1),
       CheckBoxListValidators.maxLength(3)]]
     });

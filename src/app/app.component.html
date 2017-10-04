@@ -6,8 +6,8 @@
   </div>
 
   <ng-checkbox-list [source]="data$ | async" labelField="description" valueField="id" formControlName="checkboxList"
-    [returnValuesOnly]="true"
-    [minLength]=1 [maxLength]=2 colClass="col-sm-6" [tabindex]="2">
+
+    colClass="col-sm-6" [tabindex]="2">
   </ng-checkbox-list>
   <span *ngIf="reactiveForm.get('checkboxList').errors?.required">field is required</span>
   <span *ngIf="reactiveForm.get('checkboxList').errors?.minlength">At least 1 is required</span>

@@ -55,19 +55,17 @@ export class CheckboxListComponent implements
   // , Validator
   , OnInit {
   @Input() source: Array<any>;
-  @Input() valueField: string;
-  @Input() labelField: string;
-  @Input() required: false;
-  @Input() returnValuesOnly: true; // value will be set to integer values of selected items
+  @Input() valueField = 'id';
+  @Input() labelField = 'description';
+  @Input() required = false;
+  @Input() returnValuesOnly = true; // value will be set to integer values of selected items
   @Input() minLength = 0;
   @Input() maxLength = 0;
   @Input() colClass = 'col-sm-4';
-  @Input('tabindex') _tabindex = 0;
+  @Input() tabindex: Number = 0;
   public identifier = `checkbox-${counter++}`;
   private data: Array<any> = [];
-  constructor(private el: ElementRef, private renderer: Renderer) {
-
-  }
+  constructor(private el: ElementRef, private renderer: Renderer) {  }
 
   ngOnInit(): void {
     // to remove the blue border around the control on tab
