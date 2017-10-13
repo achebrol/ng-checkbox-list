@@ -24,7 +24,7 @@ export class AppComponent {
       checkboxList: [[], [CheckBoxListValidators.required,
       CheckBoxListValidators.minLength(1),
       CheckBoxListValidators.maxLength(3)]],
-      booleanCheckboxList: [[true], [CheckBoxListValidators.required]]
+      booleanCheckboxList: [[false], [CheckBoxListValidators.required]]
     });
   }
 }
