@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CheckboxListComponent } from './checkbox-list/checkbox-list.component';
+import { BooleanCheckboxListComponent } from './boolean-checkbox-list/boolean-checkbox-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CheckboxListComponent
+    CheckboxListComponent,
+    BooleanCheckboxListComponent
   ],
   imports: [
     BrowserModule,

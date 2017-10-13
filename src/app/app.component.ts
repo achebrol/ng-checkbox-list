@@ -23,7 +23,8 @@ export class AppComponent {
     this.reactiveForm = this.fb.group({
       checkboxList: [[], [CheckBoxListValidators.required,
       CheckBoxListValidators.minLength(1),
-      CheckBoxListValidators.maxLength(3)]]
+      CheckBoxListValidators.maxLength(3)]],
+      booleanCheckboxList: [[true], [CheckBoxListValidators.required]]
     });
   }
 }

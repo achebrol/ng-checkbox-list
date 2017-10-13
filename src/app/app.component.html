@@ -1,6 +1,8 @@
 <h1>Reactive Forms Sample
 </h1>
+<div class="container">
 <form [formGroup]="reactiveForm">
+
   <div class="row form-group">
     <input type="text" tabindex="1">
   </div>
@@ -13,17 +15,27 @@
   <span *ngIf="reactiveForm.get('checkboxList').errors?.minlength">At least 1 is required</span>
   <span *ngIf="reactiveForm.get('checkboxList').errors?.maxlength">Max 2 allowed</span>
 
-</form>
+
 
 <div class="row form-group">
   <input type="text" tabindex="3">
 </div>
 
+  <ng-boolean-checkbox-list formControlName="booleanCheckboxList" [tabindex]="4" >
+    </ng-boolean-checkbox-list>
+    <span *ngIf="reactiveForm.get('booleanCheckboxList').errors?.required">field is required</span>
+
+</form>
+
 <pre>
- Touched: {{reactiveForm.get('checkboxList').touched}}
+ Checkbox List Touched: {{reactiveForm.get('checkboxList').touched}}
 </pre>
+<pre>
+    Boolean Checkbox List Touched: {{reactiveForm.get('booleanCheckboxList').touched}}
+   </pre>
 <pre>
 Form Value:
 {{reactiveForm.value | json}}
 
 </pre>
+</div>
