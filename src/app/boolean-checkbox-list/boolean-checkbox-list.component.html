@@ -1,5 +1,3 @@
-<div [formGroup]='formGroup'>
-<ng-checkbox-list [source]="source" labelField="description" valueField="id" formControlName="_control"
+<ng-checkbox-list [source]="source" labelField="description" valueField="id" [(ngModel)]="data"
     colClass="col-sm-1">
-  </ng-checkbox-list>
-</div>
+</ng-checkbox-list>

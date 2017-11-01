@@ -27,7 +27,7 @@ export class BooleanCheckboxListComponent implements
   , OnInit {
   source: Array<any>;
   @Input() tabindex: Number = 0;
-  private data: Array<number> = [];
+  public data: Array<number> = [];
   formGroup: FormGroup;
   constructor(private el: ElementRef, private renderer: Renderer) {
     this.source = [{ id: 1, description: 'Yes' }, { id: 0, description: 'No' }];

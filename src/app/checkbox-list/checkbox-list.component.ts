@@ -1,5 +1,5 @@
 
-import { Component, Input, forwardRef, ElementRef, Renderer, OnInit } from '@angular/core';
+import { Component, Input, forwardRef, ElementRef, Renderer, OnInit, Output, EventEmitter } from '@angular/core';
 import {
   ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS,
   FormControl, Validator, ValidatorFn, AbstractControl
@@ -63,6 +63,7 @@ export class CheckboxListComponent implements
   @Input() maxLength = 0;
   @Input() colClass = 'col-sm-4';
   @Input() tabindex: Number = 0;
+  @Output() blur = new EventEmitter();
   public identifier = `checkbox-${counter++}`;
   private data: Array<any> = [];
   constructor(private el: ElementRef, private renderer: Renderer) {  }
