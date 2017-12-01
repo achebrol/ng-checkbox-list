@@ -1,3 +1,9 @@
-<ng-checkbox-list [source]="source" labelField="description" valueField="id" [(ngModel)]="data"
-    colClass="col-sm-1">
-</ng-checkbox-list>
+<ng-container [formGroup]="formGroup">
+  <ng-checkbox-list [source]="source"
+                    labelField="description"
+                    valueField="id"
+                    (blur)="onTouch()"
+                    formControlName="_control"
+                    colClass="col-sm-1">
+  </ng-checkbox-list>
+</ng-container>

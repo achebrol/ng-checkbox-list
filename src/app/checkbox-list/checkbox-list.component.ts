@@ -121,6 +121,7 @@ export class CheckboxListComponent implements
   }
   private onTouch() {
     this.propagateTouch();
+    this.blur.emit();
   }
   // change events from the textarea
   private onChange(event) {
