@@ -55,6 +55,8 @@ export class BooleanCheckboxListComponent implements
     this.data = [];
     if (obj) {
       this.formGroup.get('_control').patchValue(obj.map(d => d ? 1 : 0));
+    } else {
+      this.formGroup.get('_control').reset([]);
     }
   }
   // registers 'fn' that will be fired wheb changes are made

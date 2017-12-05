@@ -119,12 +119,12 @@ export class CheckboxListComponent implements
   public registerOnTouched(fn: any) {
     this.propagateTouch = fn;
   }
-  private onTouch() {
+  public onTouch() {
     this.propagateTouch();
     this.blur.emit();
   }
   // change events from the textarea
-  private onChange(event) {
+  public onChange(event) {
 
     // get value from text area
     const newValue: number = parseInt(event.target.value, 10);
