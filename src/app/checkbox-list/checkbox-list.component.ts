@@ -54,7 +54,29 @@ export class CheckboxListComponent implements
   ControlValueAccessor
   // , Validator
   , OnInit {
-  @Input() source: Array<any>;
+  //@Input()source:Array<any>;
+
+    _source: Array<any>;
+get source(): Array<any> {
+    return this._source;
+}
+
+@Input('source')
+set source(value: Array<any>) {
+  if(this.isPrimitiveArray(value)){
+    this._source = value.map(v=>{
+      return {
+        id:v,
+        description:v
+      };
+    });
+  }
+  else{
+    this._source = value;
+  }
+
+
+}
   @Input() valueField = 'id';
   @Input() labelField = 'description';
   @Input() required = false;
@@ -89,6 +111,16 @@ export class CheckboxListComponent implements
       this.data = [];
     }
   }
+  private  isPrimitiveArray(value: any): boolean {
+      if (value instanceof Array) {
+        if(typeof value[0] !== 'string' || typeof value[0] !== 'number'){
+          return false;
+        }
+
+        return true;
+      }
+      return false;
+    }
   public isChecked(item: any) {
     return this.data && this.data.find(d => d[this.valueField] === item[this.valueField]) != null;
   }
