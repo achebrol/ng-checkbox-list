@@ -19,12 +19,15 @@ export class AppComponent {
   data$: Observable<Array<ILookUp>> = Observable.of([{ id: 1, description: 'First' },
   { id: 2, description: 'Second' }, { id: 3, description: 'Third' }
     , { id: 4, description: 'Fourth' }, { id: 5, description: 'Fifth' }]);
+  data2$:Observable<string[]>=Observable.of(['ABC','CDE','DEF','EFG']);
+  selected2:Array<string>=[];
   constructor(private fb: FormBuilder) {
     this.reactiveForm = this.fb.group({
       checkboxList: [[], [CheckBoxListValidators.required,
       CheckBoxListValidators.minLength(1),
       CheckBoxListValidators.maxLength(3)]],
-      booleanCheckboxList: [[false], [CheckBoxListValidators.required]]
+      booleanCheckboxList: [[false], [CheckBoxListValidators.required]],
+      selected2:[this.selected2]
     });
   }
 }
