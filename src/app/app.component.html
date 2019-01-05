@@ -11,6 +11,13 @@
 
     colClass="col-sm-6" [tabindex]="2">
   </ng-checkbox-list>
+  <ng-checkbox-list
+[source]="data2$ | async"
+formControlName="selected2"
+colClass="col-sm-6"
+tabindex="3"
+>
+</ng-checkbox-list>
   <span *ngIf="reactiveForm.get('checkboxList').errors?.required">field is required</span>
   <span *ngIf="reactiveForm.get('checkboxList').errors?.minlength">At least 1 is required</span>
   <span *ngIf="reactiveForm.get('checkboxList').errors?.maxlength">Max 2 allowed</span>
